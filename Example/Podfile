@@ -1,0 +1,6 @@
+use_frameworks!
+target 'fastCSV_Tests' do
+  pod 'fastCSV', :path => '../'
+  
+  
+end
