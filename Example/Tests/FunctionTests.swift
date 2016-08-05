@@ -82,6 +82,6 @@ class Tests: XCTestCase {
         let rows:[[Int]] = csv.rows.map{$0.map{Int($0)!}}
         XCTAssert(rows == [[1,2,3],[4,5,6]])
         
-        let row0:[Int] = csv[row: 0].map{Int($0)!}
+        _ = csv[row: 0].map{Int($0)!}
     }
 }

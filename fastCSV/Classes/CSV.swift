@@ -109,8 +109,7 @@ public class CSV {
     public func addColumn(name name:String, data:[String]) {
         var newColumn = data
         newColumn.insert(name, atIndex: 0)
-        let numberOfColumns = header.count
-        storage = storage.enumerate().map { (i:Int, var x:[String]) in x.append(newColumn[i]); return x }
+        storage = storage.enumerate().map { (i:Int, x:[String]) in var y = x; y.append(newColumn[i]); return y }
     }
 }
 
