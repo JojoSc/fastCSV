@@ -68,7 +68,7 @@ try? copy.writeToFile(".../path/...", atomically:true, encoding:NSASCIIStringEnc
 #####Speeds:
 
 File Size |fastCSV | CSwiftV | SwiftCSV
--|-|-|-
+---|---|---|---
 480 rows, 33 columns| 0.0070 s| 0.453 s| 1.334 s
 12480 rows, 33 columns | 1.8 s | 11.0 s |33.8 s
 
