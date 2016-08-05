@@ -12,6 +12,8 @@ public class CSV {
 
     public var lineSeparator = "\n"
     public var columnSeparator = ","
+    
+    public var map:(String)->Any = {$0}
 
     public var header:[String] {
         return storage[0]
@@ -52,7 +54,7 @@ public class CSV {
 
         for line in lines {
             if line != "" {
-                let vals = line.componentsSeparatedByString(columnSeparator)
+                let vals = line.componentsSeparatedByString(columnSeparator)//.flatMap{(x:String)->String? in if x == "" {return nil} else {return x}}
                 storage.append(vals)
             }
         }
@@ -100,4 +102,25 @@ public class CSV {
         storage.appendContentsOf(csv.rows)
     }
 
+    public func addRow(row:[String]) {
+        storage.append(row)
+    }
+    
+    public func addColumn(name name:String, data:[String]) {
+        var newColumn = data
+        newColumn.insert(name, atIndex: 0)
+        let numberOfColumns = header.count
+        storage = storage.enumerate().map { (i:Int, var x:[String]) in x.append(newColumn[i]); return x }
+    }
 }
+
+
+
+
+extension CSV:Equatable {
+}
+
+public func ==(lhs:CSV, rhs:CSV) -> Bool {
+    return lhs.storage == rhs.storage
+}
+
