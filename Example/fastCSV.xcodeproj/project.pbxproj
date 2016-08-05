@@ -14,7 +14,7 @@
 
 /* Begin PBXFileReference section */
 		32DAA7399157DA62AA3B4F86 /* Pods-fastCSV_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastCSV_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fastCSV_Tests/Pods-fastCSV_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		51681F8AAAD20554FE998B2B /* fastCSV.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = fastCSV.podspec; path = ../fastCSV.podspec; sourceTree = "<group>"; };
+		51681F8AAAD20554FE998B2B /* fastCSV.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = fastCSV.podspec; path = ../fastCSV.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		607FACE51AFB9204008FA782 /* fastCSV_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fastCSV_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
