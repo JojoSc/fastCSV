@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* FunctionTests.swift */; };
+		EB287E7B1D54E45200828E1F /* SpeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB287E7A1D54E45200828E1F /* SpeedTest.swift */; };
 		F35951E53ABEE4F571DD16A0 /* Pods_fastCSV_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CC8E82B055C5BC9A162689 /* Pods_fastCSV_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -16,11 +17,12 @@
 		51681F8AAAD20554FE998B2B /* fastCSV.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = fastCSV.podspec; path = ../fastCSV.podspec; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* fastCSV_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fastCSV_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
 		9C2E9A932592A1DDAFF97E45 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A088E4AD789CC08EAFDFA496 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B5CC8E82B055C5BC9A162689 /* Pods_fastCSV_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fastCSV_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D208E1CDD3972F8DEE72DD25 /* Pods-fastCSV_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastCSV_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-fastCSV_Tests/Pods-fastCSV_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		EB287E7A1D54E45200828E1F /* SpeedTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* FunctionTests.swift */,
+				EB287E7A1D54E45200828E1F /* SpeedTest.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -111,6 +114,7 @@
 				607FACE31AFB9204008FA782 /* Resources */,
 				84003BCF8290D8D7546186C5 /* [CP] Embed Pods Frameworks */,
 				C156C208DEDD3FAFB0925020 /* [CP] Copy Pods Resources */,
+				EBA52F4F1D52ADA400C1F122 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -211,6 +215,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fastCSV_Tests/Pods-fastCSV_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EBA52F4F1D52ADA400C1F122 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -218,7 +235,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* FunctionTests.swift in Sources */,
+				EB287E7B1D54E45200828E1F /* SpeedTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

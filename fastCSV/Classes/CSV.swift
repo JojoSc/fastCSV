@@ -14,44 +14,54 @@ public class CSV {
     public var columnSeparator = ","
 
     public var header:[String] {
-        return _header
+        return storage[0]
     }
 
+    public subscript(column column:Int) -> [String] {
+        var col = storage.map { $0[column] }
+        col.removeFirst()
+        return col
+    }
+    
     public var columns:[[String]] {
-        return _columns
+        var rtn = [[String]]()
+        for i in 0..<storage[0].count {
+            rtn.append(self[column: i])
+        }
+        return rtn
+    }
+    
+    public subscript(row row:Int) -> [String] {
+        return storage[row + 1]
     }
 
     public var rows:[[String]] {
-        return _rows
+        return Array(storage[1..<storage.count])
     }
 
 
+    private var storage = [[String]]()
 
-    private var _header = [String]()
-    private var _columns = [[String]]()
-    private var _rows = [[String]]()
-
+    
+    
+    // MARK: - Reading and writing CSV files
+    
     public init(string:String) {
         var lines = string.componentsSeparatedByString(lineSeparator)
-        _header = lines.removeFirst().componentsSeparatedByString(columnSeparator)
-
-        for _ in _header {_columns.append([])}
+        storage.append( lines.removeFirst().componentsSeparatedByString(columnSeparator) )
 
         for line in lines {
             if line != "" {
                 let vals = line.componentsSeparatedByString(columnSeparator)
-                _rows.append(vals)
-                for (i,val) in vals.enumerate() {
-                    _columns[i].append(val)
-                }
+                storage.append(vals)
             }
         }
         
     }
 
     public func generateCSV() -> String {
-        var rtn = header.joinWithSeparator(columnSeparator) + lineSeparator
-        for row in _rows {
+        var rtn = ""
+        for row in storage {
             rtn += row.joinWithSeparator(columnSeparator) + lineSeparator
         }
         return rtn
@@ -63,25 +73,22 @@ public class CSV {
     // MARK: - Remove Methods
 
     public func removeRow(row:Int) {
-        _rows.removeAtIndex(row)
-        _columns = _columns.map { var x = $0; x.removeAtIndex(row); return x }
+        storage.removeAtIndex(row + 1)
     }
 
     public func removeRows(rows:Range<Int>) {
-        _rows.removeRange(rows)
-        _columns = _columns.map { var x = $0; x.removeRange(rows); return x }
+        var shiftedRange = rows
+        shiftedRange.startIndex += 1
+        shiftedRange.endIndex += 1
+        storage.removeRange(shiftedRange)
     }
 
     public func removeColumn(col:Int) {
-        _header.removeAtIndex(col)
-        _columns.removeAtIndex(col)
-        _rows = _rows.map { var x = $0; x.removeAtIndex(col); return x }
+        storage = storage.map { var x = $0; x.removeAtIndex(col); return x }
     }
 
     public func removeColumns(cols:Range<Int>) {
-        _header.removeRange(cols)
-        _columns.removeRange(cols)
-        _rows = _rows.map { var x = $0; x.removeRange(cols); return x }
+        storage = storage.map { var x = $0; x.removeRange(cols); return x }
     }
     
     
@@ -90,11 +97,7 @@ public class CSV {
     // MARK: - Add Methods
     
     public func append(csv:CSV) {
-        _rows.appendContentsOf(csv._rows)
-        for row in csv._rows {
-            for (i,elem) in row.enumerate() {
-                _columns[i].append(elem)
-            }
-        }
+        storage.appendContentsOf(csv.rows)
     }
+
 }
